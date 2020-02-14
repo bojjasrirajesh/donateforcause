@@ -1,30 +1,32 @@
 package com.orange.donateforcause.service;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import com.orange.donateforcause.controller.UserController;
 import com.orange.donateforcause.dto.LoginDto;
 import com.orange.donateforcause.dto.LoginResponseDto;
+import com.orange.donateforcause.entity.Users;
+import com.orange.donateforcause.exception.UserNotFoundException;
 import com.orange.donateforcause.repository.UserRepository;
-
+import com.orange.donateforcause.util.DonateUtil;
 /**
  *   This class used to check login weather the user is patient or doctor
 */
-
 @Service
 public class UserServiceImpl implements UserService {
-	
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-
 	@Autowired
 	UserRepository userRepository;
-
 	@Override
 	public LoginResponseDto usersLogin(LoginDto userDto) {
-		// TODO Auto-generated method stub
-		return null;
+		LoginResponseDto responseDto = new LoginResponseDto();
+		Users user = userRepository.findByMobileAndPassword(userDto.getMobile(), userDto.getPassword());
+		if (!Objects.isNull(user)) {
+			responseDto.setMessage(DonateUtil.SUCCESS);
+			responseDto.setStatusCode(HttpStatus.OK.value());
+			responseDto.setUserId(user.getUserId());
+		} else {
+			throw new UserNotFoundException(DonateUtil.INVALID_USER);
+		}
+		return responseDto;
 	}
 }
