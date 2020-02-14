@@ -12,12 +12,17 @@ public class DonateUtil {
 	public static final String SCHEMES = "Inside DonorController getAllSchemes";
 	public static final String PAYMNET = "Inside paymentDetails of DonorController";
 	public static final String DONAR_DETAIL = "DONAR DETAILS";
-	public static final String DONAR_NAME = "Donar Name : ";
-	public static final String DONATION_SCHEMA = "Donation Schema : ";
-	public static final String AMOUNT = "Amount : ";
-	public static final String TAX_BENEFIT_AMOUNT = "Tax Benefit Amount : ";
-	public static final String PAN_NUMBER = "Pan Number : ";
 	
+	//PDF cell columns
+	public static final String DONAR_NAME 			= "Donar Name 			: ";
+	public static final String DONATION_SCHEMA 		= "Donation Schema		: ";	
+	public static final String DONATED_AMOUNT 		= "Donated Amount		: ";
+	public static final String TAX_BENEFIT_AMOUNT 	= "Tax Benefit Amount 	: ";
+	public static final String PAN_NUMBER 			= "Pan Number			: ";
+	public static final String DATE 				= "Date					: ";
+	public static final String EMAIL 				= "Email				: ";
+	public static final String CARD_NUMBER 			= "Card Number			: ";
+	public static final String CARD_TYPE 			= "Card Type			: ";
 	
 
 }

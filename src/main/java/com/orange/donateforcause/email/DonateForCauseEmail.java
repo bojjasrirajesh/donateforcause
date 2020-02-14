@@ -22,12 +22,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import com.orange.donateforcause.entity.PaymentDetails;
+
 /**
  * Utility class to generate mail.
  */
 @Component
 public class DonateForCauseEmail {
 
+	public static final String TEST = " TEST ";
 	private static final String TD_CLOSE = "</td>";
 	public static final String BR = "<br>";
 	public static final String TD_STYLE = "<td style=\"border:1px solid grey;\">";
@@ -45,7 +48,7 @@ public class DonateForCauseEmail {
 	 * @param filePath
 	 * @param donorEmailId
 	 */
-	public void sendDonationPaymentConfirmationMail(String filePath, String donorEmailId, String donorName) {
+	public void sendDonationPaymentConfirmationMail(String pdfFileName, PaymentDetails paymentDetails) {
 
 		logger.debug("Inside DonateForCauseEmail :: sendDonationPaymentConfirmationMail.");
 
@@ -55,10 +58,9 @@ public class DonateForCauseEmail {
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");// 465
 
-		// ********************************* IMPORTANT
-		// ***********************************//
+		// ********************************* IMPORTANT ***********************************//
 		String username = environment.getProperty("email.sender_mail");
-		String password = "**********";
+		String password = "manoj@159753";
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			@Override
@@ -72,7 +74,7 @@ public class DonateForCauseEmail {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(environment.getProperty("email.sender_mail"),
 					environment.getProperty("email.alias_mail")));
-			message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(donorEmailId));
+			message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(paymentDetails.getEmail()));
 			message.setSubject(environment.getProperty("email.subject"));
 
 			File folder = new File(environment.getProperty("pdf.file.path"));
@@ -80,7 +82,7 @@ public class DonateForCauseEmail {
 			Multipart multipart = new MimeMultipart();
 			BodyPart messageBodyText = new MimeBodyPart();
 			StringBuilder sb = new StringBuilder();
-			sb.append("Dear " + donorName).append(System.lineSeparator());
+			sb.append("Dear " + paymentDetails.getDonorName()).append(System.lineSeparator());
 
 			// font color
 			String fontColor = "<font color=\"green\">";
@@ -98,11 +100,10 @@ public class DonateForCauseEmail {
 
 			sb.append("<tr>");
 			sb.append(TD_STYLE).append(1).append(TD_CLOSE);
-			sb.append(TD_STYLE).append(" ").append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(" ").append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(" ").append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(" ").append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(" ").append(TD_CLOSE);
+			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
+			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
+			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
+			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
 			sb.append("</tr>");
 
 			sb.append("</table>");
@@ -113,7 +114,7 @@ public class DonateForCauseEmail {
 			for (int i = 0; i < listOfFiles.length; i++) {
 				if (listOfFiles[i].isFile()) {
 					MimeBodyPart messageBodyPart = new MimeBodyPart();
-					File att = new File(new File(filePath), listOfFiles[i].getName());
+					File att = new File(new File(pdfFileName), listOfFiles[i].getName());
 					messageBodyPart.attachFile(att);
 					multipart.addBodyPart(messageBodyPart);
 				}
