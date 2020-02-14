@@ -71,6 +71,12 @@
 			<version>3.6.0.1398</version>
 			<type>pom</type>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>		
 	</dependencies>
 	<distributionManagement>
 		<snapshotRepository>
