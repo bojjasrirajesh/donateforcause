@@ -5,7 +5,10 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;

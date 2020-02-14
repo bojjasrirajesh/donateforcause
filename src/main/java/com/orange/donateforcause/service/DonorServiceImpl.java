@@ -8,10 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.orange.donateforcause.donor.DonorResponseDto;
+import com.orange.donateforcause.dto.PaymentDetailsResponseDto;
 import com.orange.donateforcause.dto.PaymentRequestDto;
 import com.orange.donateforcause.dto.PaymentResponseDto;
 import com.orange.donateforcause.entity.DonationSchemes;
 import com.orange.donateforcause.entity.PaymentDetails;
+import com.orange.donateforcause.exception.PaymentNotFoundException;
 import com.orange.donateforcause.repository.DonorRepository;
 import com.orange.donateforcause.repository.PaymentRepository;
 import com.orange.donateforcause.util.DonateUtil;
@@ -60,5 +62,22 @@ public class DonorServiceImpl implements DonorService {
 		paymentResponseDto.setStatusCode(HttpStatus.OK.value());
 		paymentResponseDto.setPaymentDetailsId(paymentDetails.getPaymentDetailsId());
 		return paymentResponseDto;
+	}
+
+	/**
+	 * Method used to view all payment details
+	 */
+	@Override
+	public PaymentDetailsResponseDto getPaymentDetails() {
+	List<PaymentDetails> paymentList= paymentRepository.findAll();
+	PaymentDetailsResponseDto  paymentDetailsResponseDto = new PaymentDetailsResponseDto();
+	if( paymentList.size()==0)
+	{
+		throw new PaymentNotFoundException(DonateUtil.NO_PAYMENT_AVAILABLE);
+	}else
+	{
+		paymentDetailsResponseDto.setPaymentDetails(paymentList);
+	}
+		return  paymentDetailsResponseDto;
 	}
 }

@@ -5,6 +5,7 @@ public class DonateUtil {
 	private DonateUtil() {
 		
 	}
+	public static final String NO_PAYMENT_AVAILABLE="No Payment Avaliable";
 	public static final String DOCTOR_NOT_AVAILABLE = "doctor not available";
 	public static final String LOGIN_METHOD = "Inside UserController :: usersLogin";
 	public static final String SUCCESS = "success";

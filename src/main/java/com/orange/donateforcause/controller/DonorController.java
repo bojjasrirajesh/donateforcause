@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orange.donateforcause.donor.DonorResponseDto;
+import com.orange.donateforcause.dto.PaymentDetailsResponseDto;
 import com.orange.donateforcause.dto.PaymentRequestDto;
 import com.orange.donateforcause.dto.PaymentResponseDto;
 import com.orange.donateforcause.service.DonorService;
@@ -58,4 +59,14 @@ public class DonorController {
 		PaymentResponseDto paymentResponseDto = donorService.paymentDetails(paymentRequestDto);
 		return new ResponseEntity<>(paymentResponseDto, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getPaymentDetail")
+	public ResponseEntity<PaymentDetailsResponseDto> getPament() {
+		LOGGER.debug(DonateUtil.PAYMNET);
+		PaymentDetailsResponseDto paymentDetailsResponseDto=	donorService.getPaymentDetails();
+		return new ResponseEntity<>(paymentDetailsResponseDto, HttpStatus.OK);
+	}
+	
+	
+	
 }
