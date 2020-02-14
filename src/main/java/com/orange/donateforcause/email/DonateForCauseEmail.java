@@ -83,38 +83,19 @@ public class DonateForCauseEmail {
 			BodyPart messageBodyText = new MimeBodyPart();
 			StringBuilder sb = new StringBuilder();
 			sb.append("Dear " + paymentDetails.getDonorName()).append(System.lineSeparator());
-
-			// font color
-			String fontColor = "<font color=\"green\">";
-
-			sb.append(BR);
-			sb.append(BR);
-			sb.append("<table style=\"border:1px solid black;border-collapse:collapse;\" width=\"800px\">");
-			sb.append("<tr>");
-			sb.append("<th style=\"border:1px solid grey;\">Sl.No</th>");
-			sb.append("<th style=\"border:1px solid grey;\">Donation Scheme</th>");
-			sb.append("<th style=\"border:1px solid grey;\">Amount</th>");
-			sb.append("<th style=\"border:1px solid grey;\">Tax Benefit Amount</th>");
-			sb.append("<th style=\"border:1px solid grey;\">PAN</th>");
-			sb.append("</tr>");
-
-			sb.append("<tr>");
-			sb.append(TD_STYLE).append(1).append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
-			sb.append(TD_STYLE).append(fontColor).append(TEST).append(TD_CLOSE);
-			sb.append("</tr>");
-
-			sb.append("</table>");
-
+			sb.append(System.lineSeparator());
+			sb.append("Donation payment is succesful. Please find the attachement.");			
+			sb.append(System.lineSeparator());
+			sb.append(System.lineSeparator());
+			sb.append(System.lineSeparator());
+			sb.append("Thank You.");
 			messageBodyText.setText(sb.toString());
 			multipart.addBodyPart(messageBodyText);
 
 			for (int i = 0; i < listOfFiles.length; i++) {
 				if (listOfFiles[i].isFile()) {
 					MimeBodyPart messageBodyPart = new MimeBodyPart();
-					File att = new File(new File(pdfFileName), listOfFiles[i].getName());
+					File att = new File(pdfFileName);
 					messageBodyPart.attachFile(att);
 					multipart.addBodyPart(messageBodyPart);
 				}

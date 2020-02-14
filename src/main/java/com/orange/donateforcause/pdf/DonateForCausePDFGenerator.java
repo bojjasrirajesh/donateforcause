@@ -65,7 +65,7 @@ public class DonateForCausePDFGenerator {
 			table.addCell(DonateUtil.DATE					+paymentDetails.getDonationDate());
 			table.addCell(DonateUtil.DONAR_NAME				+paymentDetails.getDonorName());
 			table.addCell(DonateUtil.DONATION_SCHEMA		+donationSchemes.get().getSchemName());
-			table.addCell(DonateUtil.DONATED_AMOUNT			+donationSchemes.get().getDonationAmount() +"Rupees.");
+			table.addCell(DonateUtil.DONATED_AMOUNT			+donationSchemes.get().getDonationAmount() + DonateUtil.CURRENCY);
 			table.addCell(DonateUtil.TAX_BENEFIT_AMOUNT		+paymentDetails.getTaxBenefitAMount());
 			table.addCell(DonateUtil.PAN_NUMBER				+paymentDetails.getPanCard());
 			table.addCell(DonateUtil.EMAIL					+paymentDetails.getEmail());

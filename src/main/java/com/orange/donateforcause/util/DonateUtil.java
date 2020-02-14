@@ -26,6 +26,7 @@ public class DonateUtil {
 	public static final String EMAIL 				= "Email				: ";
 	public static final String CARD_NUMBER 			= "Card Number			: ";
 	public static final String CARD_TYPE 			= "Card Type			: ";
+	public static final String CURRENCY 			= " INR";
 	
 
 }
