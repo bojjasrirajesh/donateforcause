@@ -21,7 +21,9 @@
 			**/dto/*,
 			**/entity/*,
 			**/config/*,
-			**/constant/*
+			**/constant/*,
+			**/pdf/*,
+			**/email/*		
 		</sonar.coverage.exclusions>
 	</properties>
 
