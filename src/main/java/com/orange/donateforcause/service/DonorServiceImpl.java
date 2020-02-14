@@ -1,9 +1,8 @@
 package com.orange.donateforcause.service;
+
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,10 @@ import com.orange.donateforcause.entity.PaymentDetails;
 import com.orange.donateforcause.repository.DonorRepository;
 import com.orange.donateforcause.repository.PaymentRepository;
 import com.orange.donateforcause.util.DonateUtil;
+
 /**
- *   This class used to provide the all schemes with details
-*/
+ * This class used to provide the all schemes with details
+ */
 @Service
 public class DonorServiceImpl implements DonorService {
 	@Autowired
@@ -26,9 +26,13 @@ public class DonorServiceImpl implements DonorService {
 
 	@Autowired
 	PaymentRepository paymentRepository;
+
+	/**
+	 * Method to get all donation schemes.
+	 */
 	@Override
 	public DonorResponseDto getAllSchemes() {
-		DonorResponseDto donorResponseDto=new DonorResponseDto();
+		DonorResponseDto donorResponseDto = new DonorResponseDto();
 		List<DonationSchemes> schemesResp = donorRepository.findAll();
 		donorResponseDto.setMessage(DonateUtil.SUCCESS);
 		donorResponseDto.setStatusCode(HttpStatus.OK.value());
@@ -36,13 +40,14 @@ public class DonorServiceImpl implements DonorService {
 		return donorResponseDto;
 	}
 
+	/**
+	 * Method to confirm and persist payment information.
+	 */
 	@Override
 	public PaymentResponseDto paymentDetails(PaymentRequestDto paymentRequestDto) {
-		PaymentResponseDto paymentResponseDto=new PaymentResponseDto();
-		
-		PaymentDetails paymentDetails=new PaymentDetails();
+		PaymentResponseDto paymentResponseDto = new PaymentResponseDto();
+		PaymentDetails paymentDetails = new PaymentDetails();
 		paymentDetails.setDonationSchemeId(paymentRequestDto.getDonationSchemeId());
-		
 		paymentDetails.setDonorName(paymentRequestDto.getDonorName());
 		paymentDetails.setEmail(paymentRequestDto.getDonarEmail());
 		paymentDetails.setPanCard(paymentRequestDto.getDonarEmail());
@@ -51,7 +56,6 @@ public class DonorServiceImpl implements DonorService {
 		paymentDetails.setCardType(paymentRequestDto.getCardType());
 		paymentDetails.setTaxBenefitAMount(paymentRequestDto.getTaxBenefitAmount());
 		paymentRepository.save(paymentDetails);
-		
 		paymentResponseDto.setMessage(DonateUtil.SUCCESS);
 		paymentResponseDto.setStatusCode(HttpStatus.OK.value());
 		paymentResponseDto.setPaymentDetailsId(paymentDetails.getPaymentDetailsId());

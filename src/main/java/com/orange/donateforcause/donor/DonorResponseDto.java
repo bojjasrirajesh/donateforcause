@@ -10,11 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DonorResponseDto implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String message;
 	private Integer statusCode;
-	private List<DonationSchemes> listOfSchemes;
+	private transient List<DonationSchemes> listOfSchemes;
 }

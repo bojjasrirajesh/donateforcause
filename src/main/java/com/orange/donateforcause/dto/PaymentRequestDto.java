@@ -12,5 +12,4 @@ public class PaymentRequestDto {
 	private String panCard;
 	private String cardNo;
 	private String cardType;
-
 }
