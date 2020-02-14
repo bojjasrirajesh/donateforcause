@@ -3,21 +3,38 @@ package com.orange.donateforcause.pdf;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.orange.donateforcause.repository.PaymentRepository;
 import com.orange.donateforcause.util.DonateUtil;
 
-public class PdfGen {
+/**
+ * Utility class to generate PDF.
+ */
+@Component
+public class DonateForCausePDFGenerator {
 
+	public static final Logger logger = LoggerFactory.getLogger(DonateForCausePDFGenerator.class);
+	
 	@Autowired
 	PaymentRepository paymentRepository;
+	
+	@Autowired
+	private Environment environment;
 
-	public static void main(String[] args) {
+	public static void donateForCausePDFGenerator(String[] args) {
 		try {
 
 			OutputStream file = new FileOutputStream(new File("C:\\Users\\User1\\Documents\\PdfLocation\\tsS.pdf"));
@@ -41,11 +58,9 @@ public class PdfGen {
 			document.add(table);
 			document.close();
 			file.close();
-			System.out.println("Pdf created successfully..");
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception exception) {
+			logger.error("Exception occured while generating PDF.");
 		}
 	}
-
 }
