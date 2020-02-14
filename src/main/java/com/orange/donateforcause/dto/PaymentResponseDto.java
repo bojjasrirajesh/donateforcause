@@ -3,9 +3,10 @@ package com.orange.donateforcause.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
-public class ResponseDto {
+@Getter
+public class PaymentResponseDto {
 	private String message;
 	private Integer statusCode;
+	private Long paymentDetailsId;
 }

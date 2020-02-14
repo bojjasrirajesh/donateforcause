@@ -9,6 +9,4 @@ import com.orange.donateforcause.entity.Users;
 public interface UserRepository extends JpaRepository<Users, Long> {
 
 	public Users findByMobileAndPassword(Long mobile, String password);
-
-
 }
