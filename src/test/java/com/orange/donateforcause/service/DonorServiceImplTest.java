@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.orange.donateforcause.donor.DonorResponseDto;
+import com.orange.donateforcause.dto.PaymentRequestDto;
 import com.orange.donateforcause.entity.DonationSchemes;
 import com.orange.donateforcause.entity.PaymentDetails;
 import com.orange.donateforcause.repository.DonorRepository;
@@ -53,6 +54,9 @@ public class DonorServiceImplTest {
 		paymentDetails.setCardType("master");
 		paymentDetails.setTaxBenefitAMount("100");
 		Mockito.when(paymentRepository.save(paymentDetails)).thenReturn(null);
+		PaymentRequestDto paymentRequestDto=new PaymentRequestDto();
+		donorServiceImpl.paymentDetails(paymentRequestDto);
+		assertEquals("100", paymentDetails.getTaxBenefitAMount());
 	}
 
 }
