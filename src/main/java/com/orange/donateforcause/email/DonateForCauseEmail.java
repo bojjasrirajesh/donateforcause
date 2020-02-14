@@ -30,10 +30,6 @@ import com.orange.donateforcause.entity.PaymentDetails;
 @Component
 public class DonateForCauseEmail {
 
-	public static final String TEST = " TEST ";
-	private static final String TD_CLOSE = "</td>";
-	public static final String BR = "<br>";
-	public static final String TD_STYLE = "<td style=\"border:1px solid grey;\">";
 	public static final Logger logger = LoggerFactory.getLogger(DonateForCauseEmail.class);
 
 	private DonateForCauseEmail() {
@@ -60,7 +56,7 @@ public class DonateForCauseEmail {
 
 		// ********************************* IMPORTANT ***********************************//
 		String username = environment.getProperty("email.sender_mail");
-		String password = "manoj@159753";
+		String password = environment.getProperty("email.password");
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			@Override
