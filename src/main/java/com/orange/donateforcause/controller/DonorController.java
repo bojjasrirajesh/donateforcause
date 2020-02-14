@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orange.donateforcause.donor.DonorResponseDto;
+import com.orange.donateforcause.dto.PaymentDetailsResponseDto;
 import com.orange.donateforcause.dto.PaymentRequestDto;
 import com.orange.donateforcause.dto.PaymentResponseDto;
 import com.orange.donateforcause.service.DonorService;
@@ -37,7 +38,8 @@ public class DonorController {
 
 	/**
 	 * API to get all donation scheme information.
-	 * @return	send success code.
+	 * 
+	 * @return send success code.
 	 */
 	@GetMapping("/schemes")
 	public ResponseEntity<DonorResponseDto> getAllSchemes() {
@@ -50,7 +52,7 @@ public class DonorController {
 	 * API to complete user payment.
 	 * 
 	 * @param paymentRequestDto
-	 * @return	send success code.
+	 * @return send success code.
 	 */
 	@PostMapping(value = "/paymentDetails")
 	public ResponseEntity<PaymentResponseDto> paymentDetails(@RequestBody PaymentRequestDto paymentRequestDto) {
@@ -58,4 +60,19 @@ public class DonorController {
 		PaymentResponseDto paymentResponseDto = donorService.paymentDetails(paymentRequestDto);
 		return new ResponseEntity<>(paymentResponseDto, HttpStatus.OK);
 	}
+
+
+	/**
+	 * API to get the payment details by schemes
+	 * 
+	 * @param
+	 * @return PaymentDetailsResponseDto.
+	 */
+	@GetMapping(value = "/getPaymentDetail")
+	public ResponseEntity<PaymentDetailsResponseDto> getPament() {
+		LOGGER.debug(DonateUtil.PAYMNET_DETAIL);
+		PaymentDetailsResponseDto paymentDetailsResponseDto = donorService.getPaymentDetails();
+		return new ResponseEntity<>(paymentDetailsResponseDto, HttpStatus.OK);
+	}
+
 }
