@@ -21,23 +21,37 @@ import com.orange.donateforcause.util.DonateUtil;
 /**
  * @author Rajesh
  * 
- *         This class is used for to donate the amount to  the login function. if success it
- *         will return success else it will return user invalid
+ *         This class is used for to donate the amount to the login function. if
+ *         success it will return success else it will return user invalid
  * 
  */
 @RestController
 @RequestMapping("/donations")
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 public class DonorController {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DonorController.class);
+
 	@Autowired
 	DonorService donorService;
+
+	/**
+	 * API to get all donation scheme information.
+	 * @return	send success code.
+	 */
 	@GetMapping("/schemes")
 	public ResponseEntity<DonorResponseDto> getAllSchemes() {
 		LOGGER.debug(DonateUtil.SCHEMES);
 		DonorResponseDto donorResponseDto = donorService.getAllSchemes();
 		return new ResponseEntity<>(donorResponseDto, HttpStatus.OK);
 	}
+
+	/**
+	 * API to complete user payment.
+	 * 
+	 * @param paymentRequestDto
+	 * @return	send success code.
+	 */
 	@PostMapping(value = "/paymentDetails")
 	public ResponseEntity<PaymentResponseDto> paymentDetails(@RequestBody PaymentRequestDto paymentRequestDto) {
 		LOGGER.debug(DonateUtil.PAYMNET);
