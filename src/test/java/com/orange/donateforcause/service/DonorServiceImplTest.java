@@ -55,11 +55,13 @@ public class DonorServiceImplTest {
 		paymentDetails.setCardType("master");
 		paymentDetails.setTaxBenefitAMount("100");
 		paymentDetails.setPaymentDetailsId(1L);
-		Mockito.when(paymentRepository.save(paymentDetails)).thenReturn(paymentDetails);
+		Mockito.when(paymentRepository.save(paymentDetails)).thenReturn(null);
 		PaymentRequestDto paymentRequestDto=new PaymentRequestDto();
-		paymentRequestDto.setDonationSchemeId(1L);
+		PaymentResponseDto paymentResponseDto=new PaymentResponseDto();
+		paymentResponseDto.setPaymentDetailsId(1L);
 		PaymentResponseDto paymentDetails2 = donorServiceImpl.paymentDetails(paymentRequestDto);
-		assertEquals("100", paymentDetails2.getPaymentDetailsId());
+		
+		assertEquals(200, paymentDetails2.getStatusCode());
 	}
 
 }
