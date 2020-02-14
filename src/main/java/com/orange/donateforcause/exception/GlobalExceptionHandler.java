@@ -12,17 +12,11 @@ import com.orange.donateforcause.dto.ResponseDto;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
-	
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<ResponseDto> userNotFoundException() {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setMessage("Invalid User");
 		responseDto.setStatusCode(201);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
-	}
-	
-	
-
-	
-	
+	}	
 }
