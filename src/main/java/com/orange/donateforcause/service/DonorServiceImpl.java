@@ -73,7 +73,7 @@ public class DonorServiceImpl implements DonorService {
 		paymentDetails.setCardNo(paymentRequestDto.getCardNo());
 		paymentDetails.setCardType(paymentRequestDto.getCardType());
 		paymentDetails.setTaxBenefitAMount(paymentRequestDto.getTaxBenefitAmount());
-		paymentDetails = paymentRepository.save(paymentDetails);
+		paymentRepository.save(paymentDetails);
 		
 		try {
 			if(paymentDetails.getPaymentDetailsId() != null) {

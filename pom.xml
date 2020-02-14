@@ -23,7 +23,8 @@
 			**/config/*,
 			**/constant/*,
 			**/pdf/*,
-			**/email/*		
+			**/email/*,
+			**/exception/*
 		</sonar.coverage.exclusions>
 	</properties>
 
