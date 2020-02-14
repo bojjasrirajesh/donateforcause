@@ -12,6 +12,8 @@ public class DonateUtil {
 	public static final String INVALID_USER = "Invalid User";
 	public static final String SCHEMES = "Inside DonorController getAllSchemes";
 	public static final String PAYMNET = "Inside paymentDetails of DonorController";
+	public static final String PAYMNET_DETAIL = "Total Payment Details";
+	public static final String NO_PAYMENT ="No Payments are Found";
 	public static final String DONAR_DETAIL = "DONAR DETAILS";
 	public static final String DONAR_NAME = "Donar Name : ";
 	public static final String DONATION_SCHEMA = "Donation Schema : ";
